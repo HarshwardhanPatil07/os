@@ -1,3 +1,148 @@
+ /* Start of file: shell.txt .c */   & echo /*   & type "shell.txt .c"   & echo */   & echo /* End of file: shell.txt .c */   & echo.
+/* Start of file: shell.txt .c */ 
+/* 
+read -p "Enter a number: " number
+if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+  echo "invalid"
+  exit 1
+fi
+sum=0
+while [ $number -gt 0 ]; do
+ digit=$((number % 10))
+  sum=$((sum + digit))
+  number=$((number / 10))
+done
+echo "Sum of digits: $sum"
+
+
+
+
+
+average() {
+  sum=0
+  count=0
+  for num in "$@"; 
+  do
+    sum=$((sum + num))
+    count=$((count + 1))
+  done
+  avg=$(echo "scale=2; $sum / $count" | bc)
+  echo "Average: $avg"
+}
+
+
+
+
+
+max_digit() {
+  number=$1
+  max=0
+  while [ $number -gt 0 ]; 
+  do
+    digit=$((number % 10))
+    if [ $digit -gt $max ]; then
+      max=$digit
+    fi
+    number=$((number / 10))
+  done
+  echo "Max digit: $max"
+}
+min_digit() {
+  number=$1
+  min=9
+  while [ $number -gt 0 ]; 
+  do
+    digit=$((number % 10))
+    if [ $digit -lt $min ]; then
+      min=$digit
+    fi
+    number=$((number / 10))
+  done
+  echo "Min digit: $min"
+}
+read -p "Enter numbers: " -a numbers
+average "${numbers[@]}"
+read -p "Enter a number: " number
+if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+  echo "Invalid"
+  exit 1
+fi
+max_digit "$number"
+min_digit "$number"
+
+
+
+
+
+read -p "Enter array elements: " -a array
+sorted_array=($(for i in "${array[@]}"; 
+                do echo $i; 
+                done | sort -n))
+echo "Sorted array: ${sorted_array[@]}"
+
+
+
+factorial() {
+  if [ $1 -le 1 ]; then
+    echo 1
+  else
+    prev=$(factorial $(( $1 - 1 )))
+    echo $(( $1 * prev ))
+  fi
+}
+read -p "Enter a number: " number
+if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+  echo "invalid"
+  exit 1
+fi
+echo "Factorial of $number is "$(factorial $number)
+
+
+
+read -p "Enter a number: " number
+if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+  echo "invalid"
+  exit 1
+fi
+factorial=1
+for (( i=1; i<=number; i++ )); do
+  factorial=$((factorial * i))
+done
+echo "Factorial of $number is $factorial"
+
+
+
+
+
+
+read -p "Enter the file name: " file
+if [ -e "$file" ]; then
+  echo "File Type: $(file -b "$file")"
+  echo "Permissions: $(stat -c %A "$file")"
+else
+  echo "Error: File does not exist."
+fi
+
+
+
+
+
+read -p "enter string: " string
+reverse=$(echo "$string" | rev)
+if [ "$string" == "$reverse" ]; then
+  echo "$string is palindrome"
+else
+  echo "$string is not palindrome"
+fi
+
+*/ 
+/* End of file: shell.txt .c */ 
+
+
+
+
+
+
 banker avoidance
 #include <stdio.h>
 #include <stdbool.h>
